@@ -13,23 +13,23 @@ CREATE TABLE boligrating.adresser (
 
 CREATE TABLE boligrating.reviews (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    datoReview DATE NOT NULL,
-    adresseid INT NOT NULL REFERENCES adresser(bruksenhetid),
+    dato_review DATE NOT NULL,
+    adresse_id INT NOT NULL REFERENCES adresser(bruksenhetid),
 
-    karakterTotal ENUM('1', '2', '3', '4', '5') NOT NULL,
-    karakterBygg ENUM('1', '2', '3', '4', '5') NOT NULL,
-    karakterPris ENUM('1', '2', '3', '4', '5') NOT NULL,
-    karakterUtleier ENUM('1', '2', '3', '4', '5') NOT NULL,
+    karakter_total ENUM('1', '2', '3', '4', '5') NOT NULL,
+    karakter_bygg ENUM('1', '2', '3', '4', '5') NOT NULL,
+    karakter_pris ENUM('1', '2', '3', '4', '5') NOT NULL,
+    karakter_utleier ENUM('1', '2', '3', '4', '5') NOT NULL,
 
-    navnUtleier VARCHAR(100) NOT NULL,
-    kontraktOppsigelsestid ENUM('1', '2', '3', '3+', 'ingen') NOT NULL,
+    navn_utleier VARCHAR(100) NOT NULL,
+    kontrakt_oppsigelsestid ENUM('1', '2', '3', '3+', 'ingen') NOT NULL,
     depositumskonto TINYINT NOT NULL,
     leiepris INT NOT NULL,
     depositum INT NOT NULL,
 
-    leieFra DATE NOT NULL,
-    leieTil DATE NOT NULL,
+    leie_fra DATE NOT NULL,
+    leie_til DATE NOT NULL,
     boAlene TINYINT NOT NULL,
-    telefonnummerTilbakemelder VARCHAR(11) NOT NULL,
+    telefonnummer_reviewer VARCHAR(11) NOT NULL,
     godkjent TINYINT NOT NULL
 );
