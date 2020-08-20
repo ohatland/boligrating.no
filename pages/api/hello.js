@@ -3,4 +3,7 @@
 export default (req, res) => {
   res.statusCode = 200
   res.json({ name: 'John Doe' })
+  
+  // Fungerer dårlig
+  //res.json({ name: 'Øyvind'})
 }
