@@ -1,15 +1,16 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Header from '../components/header'
 import Searchbar from '../components/searchbar'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Boligrating</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>" />
-      </Head>
-      <h1 className="text-6xl font-semibold italic">Hello test</h1>
+    <div className="bg-small">
+      <Header />
+
+      <div className="px-10 pt-20">
+        <h3 className="font-semibold italic text-white text-3xl">Finn seriøse utleiere</h3>
+        <p className="text-gray-200 text-base">Søk i vår database med oversikt over tidligere leieboeres erfaringer</p>
+      </div>
+      
       <Searchbar />
     </div>
   )
