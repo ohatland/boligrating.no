@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
 
@@ -8,5 +8,10 @@ services:
         restart: always
         ports:
             - 3306:3306
+        volumes: 
+            - ./docker_files/db:/docker-entrypoint-initdb.d
+            - ./docker_files/cnf:/etc/mysql/conf.d
+
         environment: 
             MYSQL_ROOT_PASSWORD: password
+        

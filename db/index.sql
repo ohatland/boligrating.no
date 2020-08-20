@@ -1,2 +1,0 @@
-CREATE INDEX boligrating_adressenavn_nummer_idx
-ON adresser(adressenavn, nummer)
