@@ -1,7 +1,9 @@
 module.exports = {
   purge: ["./pages/**/*.js", "./components/**/*.js"],
   theme: {
-    extend: {},
+    fontfontFamily: {
+      'sans': ['Helvetica', 'Areal', 'sans-serif']
+    },
   },
   variants: {},
   plugins: [],
