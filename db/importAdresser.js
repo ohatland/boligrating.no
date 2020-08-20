@@ -1,55 +1,40 @@
-import fs from 'fs'
-import { pool } from '../config/database.js'
+const fs = require('fs')
+const { pool } = require('../config/database.js')
 
 const text = fs.readFileSync('/home/hatland/projects/boligrating/db/adresserTestdata.csv').toString().split('\n')
 
 for(const i in text) {
     const line = text[i].split(';')
     if(line[2] == 'vegadresse') {
-        const obj = {
-            bruksenhetid: line[14],
-            adressenavn: line[6],
-            nummer: line[7],
-            bokstav: line[8],
-            bruksenhetsnummerTekst: line[15],
-            postnummer: line[21],
-            poststed: line[22],
-            kommunenavn: line[1],
-        }
-        writeToDatabase(obj)
-    }
-}
+        const sql = 
+        `INSERT INTO adresser(
+            bruksenhetid, 
+            veinavn,
+            nummer,
+            nummer_bokstav, 
+            bruksenhetsnummerTekst, 
+            postnummer, 
+            poststed, 
+            kommunenavn) 
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)`
 
-function writeToDatabase(obj) {
-    pool.getConnection((err, connection) => {
-        try {
-            const sql = `INSERT INTO adresser(
-                bruksenhetid, 
-                adressenavn, 
-                nummer, 
-                bokstav, 
-                bruksenhetsnummerTekst, 
-                postnummer, 
-                poststed, 
-                kommunenavn) 
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
-            const values = [
-                obj.bruksenhetid,
-                obj.adressenavn,
-                obj.nummer,
-                obj.bokstav,
-                obj.bruksenhetsnummerTekst,
-                obj.postnummer,
-                obj.postnummer,
-                obj.kommunenavn
-            ]
-            // execute query
-            connection.query(sql, values)
-            console.log("Added to database: ", obj)
-        } catch (error) {
-            console.error(error)
-        } finally {
-            connection.release()
-        }
-    })
+        const values = [
+            line[14],
+            line[6],
+            line[7],
+            line[8],
+            line[15],
+            line[21],
+            line[22],
+            line[1],
+        ]
+
+        pool.query(sql, values, (err, rows, fields) => {
+            if (err) {
+                console.error(err)
+            } else {
+                console.log(rows)
+            }
+        })
+    }
 }

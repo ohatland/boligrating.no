@@ -1,4 +1,4 @@
-import mysql from 'mysql'
+const mysql = require('mysql')
 
 let pool = mysql.createPool({
     connectionLimit: 10,
@@ -19,4 +19,6 @@ pool.getConnection((err, connection) => {
     }
 })
 
-export { pool }
+
+
+module.exports.pool = pool
