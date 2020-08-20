@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { pool } = require('../config/database.js')
+const { pool } = require('../libs/database.js')
 
 const text = fs.readFileSync('/home/hatland/projects/boligrating/db/reviewsTestdata.csv').toString().split('\n')
 
