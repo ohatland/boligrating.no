@@ -1,0 +1,26 @@
+{
+    "adressse_bolig": {
+        "veiadresse": "text",
+        "nummer_bokstav": "text",
+        "kommunenavn": "text",
+        "review" : {
+            "summert_karakter_totalt": "tall",
+            "depositumskonto": "bool",
+            "oppsigelse": "enum"
+        }
+    },
+
+    "adresse_leilighet": {
+        "veiadresse": "text",
+        "nummer_bokstav": "text",
+        "kommunenavn": "text",
+        "leilighet": {
+            "leilighetsnummer": "text",
+            "review" : {
+                "summert_karakter_totalt": "tall",
+                "depositumskonto": "bool",
+                "oppsigelse": "enum"
+            }
+        }
+    }
+}
