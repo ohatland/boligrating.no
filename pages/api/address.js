@@ -4,13 +4,17 @@ const sql = `
 SELECT * 
 FROM adresser
 WHERE MATCH(veinavn, nummer_bokstav, poststed, kommunenavn) 
-AGAINST('+Byvegen+5' IN BOOLEAN MODE) 
+AGAINST(? IN BOOLEAN MODE) 
 ORDER BY veinavn, nummer, nummer_bokstav
-LIMIT 10;
+LIMIT 7;
 `
 
 export default (req, res) => {
-    pool.query(sql, (err, address, fields) => {
+    // TODO - serialize input
+    // inserts '+' to work with BOOLEAN search mode in mysql
+    const search = '+' + req.query.search.split(' ').join('+')
+    
+    pool.query(sql, [search], (err, address, fields) => {
         if (err) {
             console.error(err)
         }
@@ -18,4 +22,3 @@ export default (req, res) => {
         res.json(address)
     })
   }
-  
