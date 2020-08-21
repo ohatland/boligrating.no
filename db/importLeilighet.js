@@ -1,32 +1,34 @@
 const fs = require('fs')
 const { pool } = require('../libs/database.js')
 
-const text = fs.readFileSync('/home/hatland/projects/boligrating/db/matrikkelenVegadresseTestdata.csv').toString().split('\n')
+const text = fs.readFileSync('/home/hatland/projects/boligrating/db/matrikkelenAdresseLeilighetsnivaTestdata.csv').toString().split('\n')
 
 for(const i in text) {
     const line = text[i].split(';')
-    if(line[3] == 'vegadresse') {
+    if(line[2] == 'vegadresse') {
         const sql = 
-        `INSERT INTO adresser(
+        `INSERT INTO leiligheter(
             id, 
             veinavn,
             nummer,
             bokstav,
-            nummer_bokstav, 
+            bruksenhetsnummer, 
             postnummer, 
             poststed, 
-            kommunenavn) 
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?)`
+            kommunenavn, 
+            kommunenavn_veinavn_nummer_bokstav)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
         const values = [
-            line[0],
+            line[14],
+            line[6],
             line[7],
             line[8],
-            line[9],
-            line[8] + line[9],
-            line[19],
-            line[20],
-            line[2],
+            line[15],
+            line[21],
+            line[22],
+            line[1],
+            line[1] + line[6] + line[7] + line[8],
         ]
 
         pool.query(sql, values, (err, rows, fields) => {

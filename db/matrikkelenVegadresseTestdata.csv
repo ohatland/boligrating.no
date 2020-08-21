@@ -1,0 +1,13 @@
+﻿lokalid;kommunenummer;kommunenavn;adressetype;adressetilleggsnavn;adressetilleggsnavnKilde;adressekode;adressenavn;nummer;bokstav;gardsnummer;bruksnummer;festenummer;undernummer;adresseTekst;adresseTekstUtenAdressetilleggsnavn;EPSG-kode;Nord;Øst;postnummer;poststed;oppdateringsdato;datauttaksdato
+1;;ANDEBY;vegadresse;;;;Byvegen;1;;;;;;;;;;;1001;PARADIS;;
+2;;ANDEBY;vegadresse;;;;Byvegen;2;;;;;;;;;;;1001;PARADIS;;
+3;;ANDEBY;vegadresse;;;;Byvegen;3;A;;;;;;;;;;1001;PARADIS;;
+4;;ANDEBY;vegadresse;;;;Byvegen;3;B;;;;;;;;;;1001;PARADIS;;
+5;;ANDEBY;vegadresse;;;;Byvegen;4;A;;;;;;;;;;1001;PARADIS;;
+6;;ANDEBY;vegadresse;;;;Byvegen;4;B;;;;;;;;;;1001;PARADIS;;
+7;;ANDEBY;vegadresse;;;;Byvegen;5;;;;;;;;;;;1001;PARADIS;;
+8;;ANDEBY;vegadresse;;;;Byvegen;6;;;;;;;;;;;1001;PARADIS;;
+9;;ANDEBY;vegadresse;;;;Skurkebakken;1;;;;;;;;;;;1002;SENTRUM;;
+10;;ANDEBY;vegadresse;;;;Skurkebakken;2;;;;;;;;;;;1002;SENTRUM;;
+11;;ANDEBY;vegadresse;;;;Skurkebakken;3;;;;;;;;;;;1002;SENTRUM;;
+;;;;;;;;;;;;;;;;;;;1002;SENTRUM;;

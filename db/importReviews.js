@@ -6,7 +6,6 @@ const text = fs.readFileSync('/home/hatland/projects/boligrating/db/reviewsTestd
 for(const i in text) {
     const line = text[i].split(';')
     if(line[0] != 'dato_reviews') {
-        // ;;;;;;;;;;;;;;;
 
         const sql = `INSERT INTO reviews(
                 dato_review, 
