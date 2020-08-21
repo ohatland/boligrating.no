@@ -1,11 +1,23 @@
 CREATE SCHEMA boligrating;
 
-CREATE TABLE boligrating.adresser (
-    bruksenhetid INT NOT NULL PRIMARY KEY, 
+CREATE TABLE boligrating.leiligheter (
+    id INT NOT NULL PRIMARY KEY, 
     veinavn VARCHAR(100) NOT NULL,
     nummer SMALLINT NOT NULL,
+    bokstav VARCHAR(2),
+    bruksenhetsnummer VARCHAR(5),
+    postnummer SMALLINT NOT NULL,
+    poststed VARCHAR(50) NOT NULL,
+    kommunenavn VARCHAR(50) NOT NULL,
+    kommunenavn_veinavn_nummer_bokstav VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE boligrating.adresser (
+    id INT NOT NULL PRIMARY KEY, 
+    veinavn VARCHAR(100) NOT NULL,
+    nummer SMALLINT NOT NULL,
+    bokstav VARCHAR(2),
     nummer_bokstav VARCHAR(10) NOT NULL,
-    bruksenhetsnummerTekst VARCHAR(5),
     postnummer SMALLINT NOT NULL,
     poststed VARCHAR(50) NOT NULL,
     kommunenavn VARCHAR(50) NOT NULL,
