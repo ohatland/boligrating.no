@@ -1,4 +1,5 @@
-const mysql = require('mysql')
+import mysql from 'mysql'
+import util from 'util'
 
 let pool = mysql.createPool({
     connectionLimit: 10,
@@ -8,17 +9,6 @@ let pool = mysql.createPool({
     database: 'boligrating_testdata'
 })
 
-// Eks
-pool.getConnection((err, connection) => {
-    try {
-        // execute query
-    } catch (error) {
-        
-    } finally {
-        connection.release()
-    }
-})
+pool.query = util.promisify(pool.query)
 
-
-
-module.exports.pool = pool
+module.exports = pool
