@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router'
-//import useSWR from 'swr'
 import fetch from 'isomorphic-unfetch'
 import Searchbar from '../components/searchbar'
 import Header from '../components/header'
