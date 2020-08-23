@@ -13,11 +13,7 @@ export default async (req, res) => {
 
     console.log("API fikk følgende query",req.query)
 
-    if (req.query.q === 'undefined') {
-        emptyResponse(res)
-    }
-
-    else if (req.query.q) {
+    if (req.query.q) {
         
         // TODO - serialize input
         // inserts '+' to work with BOOLEAN search mode in mysql
