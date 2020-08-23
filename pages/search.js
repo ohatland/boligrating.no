@@ -8,10 +8,25 @@ export default function Search() {
     // get query from searchbar
     const querystring = useRouter().query.address
     
-    const { data, error } = useSWR(`/api/address?q=${querystring}`, fetch)
-    
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>
+    /**
+     * if nothing
+     *      return ingen resultat
+     * 
+     * if one address
+     *      if bolig
+     *          return address info with score and reivews, one for each line
+     *
+     *       if apartment
+     *          return address info with apartments overview?
+     * 
+     * if multiple addresses
+     *      if bolig
+     *          return address info with score
+     * 
+     *      if apartment
+     *          return address info marked as apartment 
+     * 
+     */
 
     if (data.address)
     return (
