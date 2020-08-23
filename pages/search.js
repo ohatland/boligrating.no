@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import Searchbar from '../components/searchbar'
 import Header from '../components/header'
-import mysql from 'mysql'
 
 export default function Search({ data }) {
 
