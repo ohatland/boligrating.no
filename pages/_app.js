@@ -1,5 +1,6 @@
 import '../styles/talwind.css'
-import '../styles/globals.css'
+import '../styles/global.css'
+import '../styles/footer.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
