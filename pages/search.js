@@ -5,7 +5,6 @@ import Searchbar from '../components/searchbar'
 import Header from '../components/header'
 
 export default function Search({ data }) {
-
     /**
      * if nothing
      *      return ingen resultat
@@ -26,7 +25,7 @@ export default function Search({ data }) {
      * 
      */
 
-    if (data.address)
+    if (data.address.length)
     return (
         <div>
             <Header />
@@ -50,20 +49,26 @@ export default function Search({ data }) {
         <div>
             <Header />
             <Searchbar query={data.querystring} />
-            <h3>Ingen søk idag</h3>
+            <h3>Ingen treff</h3>
         </div>
     )
 }
 
 export async function getServerSideProps(context) {
 
-    // Get data from API, make it to right variables
-    console.log(fetch(`/api/address?q=kuk`))
-    return {
-      props: {
-          data: {
-              querystring: context.query.address
-          }
-      },
-    }
-  }
+    let props
+    
+    await fetch(`http://localhost:3000/api/address?q=${context.query.address}`)
+        .then(r => r.json())
+        .then(data => {
+            props = {
+                data: {
+                    querystring: context.query.address,
+                    message: data.message,
+                    address: data.address
+                }
+            }
+        })
+    
+    return { props }
+}
