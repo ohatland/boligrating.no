@@ -27,9 +27,11 @@ export default async (req, res) => {
             if (err) {
                 console.error(err)
 
-                console.log("API response: KRISE!")
                 res.statusCode = 500
-                res.json({ message: 'KRISE!' })
+                res.json({ 
+                    message: "Error",
+                    address: []
+                })
             }
 
 
@@ -57,5 +59,8 @@ export default async (req, res) => {
 function emptyResponse(res) {
     console.log("API response: Empty searchstring")
     res.statusCode = 200
-    res.json({ message: "Empty searchstring"})
+    res.json({ 
+        message: "Empty searchstring",
+        address: []
+    })
 }
