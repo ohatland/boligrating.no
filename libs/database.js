@@ -11,7 +11,7 @@ let pool = mysql.createPool({
     port: process.env.DB_PORT,
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: 'boligrating'
+    database: 'boligrating_testdata'
 })
 
 pool.query = util.promisify(pool.query)
