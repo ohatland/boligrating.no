@@ -1,12 +1,10 @@
 import pool from '../../libs/database'
 
 const sql = `
-SELECT * 
-FROM adresser
+SELECT * FROM adresse
 WHERE MATCH(veinavn, nummer_bokstav, poststed, kommunenavn) 
-AGAINST(? IN BOOLEAN MODE) 
-ORDER BY veinavn, nummer, nummer_bokstav
-LIMIT 7;
+AGAINST(? IN BOOLEAN MODE)
+LIMIT 10;
 `
 
 export default async (req, res) => {
@@ -29,7 +27,6 @@ export default async (req, res) => {
                     address: []
                 })
             }
-
 
             else if (address.length == 0) {
                 console.log("API response: Empty response")
