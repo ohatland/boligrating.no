@@ -32,7 +32,12 @@ export default async (req, res) => {
 
 
             else if (address.length == 0) {
-                emptyResponse(res)
+                console.log("API response: Empty response")
+                res.statusCode = 200
+                res.json({
+                    message: "Empty response",
+                    address: []
+                })
             }
 
             else {
