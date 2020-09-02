@@ -1,5 +1,4 @@
-import mysql from 'mysql'
-import util from 'util'
+import mysql from 'mysql2/promise'
 import dotenv from 'dotenv'
 
 // load values from .env file
@@ -13,7 +12,5 @@ let pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: 'boligrating_testdata'
 })
-
-pool.query = util.promisify(pool.query)
 
 module.exports = pool
