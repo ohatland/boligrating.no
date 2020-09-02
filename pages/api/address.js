@@ -1,64 +1,56 @@
 import pool from '../../libs/database'
 
-const sql = `
-SELECT * FROM adresse
-WHERE MATCH(veinavn, nummer_bokstav, poststed, kommunenavn) 
-AGAINST(? IN BOOLEAN MODE)
-LIMIT 10;
-`
+const sqlAdresser = 'call finn_adresser(?)'
+const sqlLeiligheter = 'call finn_leiligheter_med_adresse_id(?)'
+const sqlReviews = 'call finn_reviews_med_adresse_id(?)'
 
 export default async (req, res) => {
 
-    console.log("API fikk følgende query",req.query)
-
+    // if api recives a query with id q
     if (req.query.q) {
-        
-        // TODO - serialize input
-        // inserts '+' to work with BOOLEAN search mode in mysql
+
+        // variable to populate with sql response and sendt by api as json
+        let data = {}
+
+        // TODO - sanitize input
+
+        // inserts '+' before every word in searchstring to work with BOOLEAN search mode in mysql
         const searchstring = '+' + req.query.q.split(' ').join('+')
-        
-        await pool.query(sql, [searchstring], (err, address, fields) => {
-            if (err) {
-                console.error(err)
 
-                res.statusCode = 500
-                res.json({ 
-                    message: "Error",
-                    address: []
-                })
-            }
+        data.adresser = (await pool.query(sqlAdresser, [searchstring]))[0][0]
 
-            else if (address.length == 0) {
-                console.log("API response: Empty response")
-                res.statusCode = 200
-                res.json({
-                    message: "Empty response",
-                    address: []
-                })
-            }
+        if (data.adresser.length == 0) {
+            emptyResponse(res, data)
+        }
 
-            else {
-                console.log("API response: OK")
-                res.statusCode = 200
-                res.json({
-                    message: "OK",
-                    address: address
-                })
+        else {   
+            for (const adresse of data.adresser) {
+                adresse.leiligheter = (await pool.query(sqlLeiligheter, [adresse.id]))[0][0]
+                adresse.reviews = (await pool.query(sqlReviews, [adresse.id]))[0][0]
             }
-        })
-        
-    } 
-    
+            
+            res.statusCode = 200
+            res.json(data)
+        }
+    }
+
     else {
-        emptyResponse(res)
+        noQuerystring(res, data)
     }
 }
 
-function emptyResponse(res) {
-    console.log("API response: Empty searchstring")
+function noQuerystring(res, data) {
     res.statusCode = 200
-    res.json({ 
+    res.json({
         message: "Empty searchstring",
-        address: []
+        data
+    })
+}
+
+function emptyResponse(res, data) {
+    res.statusCode = 200
+    res.json({
+        message: "Empty response",
+        data
     })
 }
