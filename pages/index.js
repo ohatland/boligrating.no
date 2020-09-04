@@ -1,10 +1,8 @@
-import Header from '../components/header'
 import Searchbar from '../components/searchbar'
 
 export default function Home() {
   return (
     <div className="bg-small">
-      <Header />
 
       <div className="px-10 pt-20">
         <h3 className="font-semibold italic text-white text-3xl">Finn seriøse utleiere</h3>

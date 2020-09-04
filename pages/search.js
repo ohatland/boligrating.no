@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import Searchbar from '../components/searchbar'
-import Header from '../components/header'
+import Adresse from '../components/adresse'
 
 export default function Search({ data }) {
     /**
@@ -45,8 +45,7 @@ export default function Search({ data }) {
 
     return (
         <div>
-            <Header />
-            <Searchbar query={data.querystring} />
+            <Searchbar query={querystring} />
             <h3>Ingen treff</h3>
         </div>
     )

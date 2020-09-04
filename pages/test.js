@@ -1,4 +1,3 @@
-import Header from '../components/header'
 import useSWR from 'swr'
 import fetch from '../libs/fetch'
 
@@ -10,7 +9,6 @@ export default function Test() {
     
     return (
         <div>
-            <Header />
             <p>{data.name}</p>
         </div>
       )
