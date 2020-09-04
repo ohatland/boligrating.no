@@ -1,62 +1,22 @@
 import pool from '../../libs/database'
 
-const sqlAdressse = `
-SELECT * FROM adresse_leilighet_review
-WHERE adresse_id = ?
-`
-
-const sqlLeilighet = `
-SELECT * FROM adresse_leilighet_review
-WHERE leilighet_id = ?
-`
+const sqlAdressse = 'call finn_adresse_leilighet_review_med_adresse_id(?)'
 
 export default async (req, res) => {
 
-    if (req.query.adresse) {
-        await pool.query(sqlAdressse, [req.query.adresse], (err, address, fields) => {
-            if (err) {
-                console.error(err)
-    
-                res.statusCode = 500
-                res.json({
-                    message: "Error",
-                    reivews: []
-                })
-            }
-    
-            else {
-                res.statusCode = 200
-                res.json({
-                    message: "OK",
-                    reivews: address
-                })
-            }
-        })
-    }
+    if (req.query.adresse_id) {
 
-    else if (req.query.leilighet) {
-        await pool.query(sqlLeilighet, [req.query.leilighet], (err, address, fields) => {
-            if (err) {
-                console.error(err)
-    
-                res.statusCode = 500
-                res.json({
-                    message: "Error",
-                    reivews: []
-                })
-            }
-    
-            else {
-                res.statusCode = 200
-                res.json({
-                    message: "OK",
-                    reivews: address
-                })
-            }
+        const [rows] = await pool.query(sqlAdressse, [req.query.adresse_id])
+        res.statusCode = 200
+        res.json({
+            adresse: rows[0][0],
+            leiligheter: rows[1],
+            reviews: rows[2]
         })
     }
 
     else {
+        res.statusCode = 200
         res.json({message: 'Invalid querystring'})
     }
 
