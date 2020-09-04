@@ -1,47 +1,28 @@
 import fetch from 'isomorphic-unfetch'
+import Link from 'next/link'
 import Searchbar from '../components/searchbar'
 import Adresse from '../components/adresse'
 
-export default function Search({ data }) {
-    /**
-     * if nothing
-     *      return ingen resultat
-     * 
-     * if one address
-     *      if bolig
-     *          return address info with score and reivews, one for each line
-     *
-     *       if apartment
-     *          return address info with apartments overview?
-     * 
-     * if multiple addresses
-     *      if bolig
-     *          return address info with score
-     * 
-     *      if apartment
-     *          return address info marked as apartment 
-     * 
-     */
+export default function Search({ data, querystring }) {
 
-    if (data.address.length)
-    return (
-        <div>
-            <Header />
-            <Searchbar query={data.querystring} />
-            <ul>
-                {data.address.map((address) => (
-                    <li key={address.id}>
-                        <div className="flex w-auto bg-gray-200 p-3 m-8 shadow-lg rounded-lg">
-                            <p className="flex-1">{address.karakter_total}</p>
-                            <p className="flex-1">{address.veinavn}</p>
-                            <p className="flex-1">{address.nummer_bokstav}</p>
-                            <p className="flex-1 text-pink-500">{address.poststed}</p>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
+    if (data.adresser) {
+        return (
+            <div>
+                <Searchbar query={querystring} />
+                <ul>
+                    {data.adresser.map((adresse) => (
+                        <li key={adresse.id}>
+                            <Link href="/adresse/[id]" as={`/adresse/${adresse.id}`}>
+                                <div>
+                                    <Adresse adresse={adresse} />
+                                </div>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -54,18 +35,15 @@ export default function Search({ data }) {
 export async function getServerSideProps(context) {
 
     let props
-    
+
     await fetch(`http://localhost:3000/api/address?q=${context.query.address}`)
         .then(r => r.json())
         .then(data => {
             props = {
-                data: {
-                    querystring: context.query.address,
-                    message: data.message,
-                    address: data.address
-                }
+                data,
+                querystring: context.query.address
             }
         })
-    
+
     return { props }
 }
