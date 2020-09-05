@@ -1,14 +1,29 @@
-export default function Adresse(props) {
-    return (
-            <div className="flex w-auto bg-gray-200 p-3 m-10 shadow-lg rounded-lg">
-                <p className="flex-1">{oneDesimal(props.adresse.snitt_karakter)}</p>
-                <p className="flex-1">{props.adresse.veinavn}</p>
-                <p className="flex-1">{props.adresse.bolignummer}</p>
-                <p className="flex-1">{props.adresse.kommunenavn}</p>
-            </div>
-    )
-}
+export default function Adresse({ adresse }) {
 
-function oneDesimal(num) {
-    if (num) return Number.parseFloat(num).toFixed(1)
+    const arr = [1, 2, 3, 4, 5]
+    return (
+        <div className="adresse">
+            <div className="flex-1">
+                <div className="flex flex-row pt-1">
+                    {arr.map((num) => {
+                        if (adresse.snitt_karakter >= num - 0.5) { return (<i class="fas fa-star h-4"></i>) }
+                        else if (adresse.snitt_karakter >= num - 1 && num - adresse.snitt_karakter < 1) { return (<i class="fas fa-star-half-alt h-4"></i>) }
+                        else { return (<i class="far fa-star h-4"></i>) }
+                    })}
+                </div>
+                <p>{adresse.antall_reviews} vurderinger</p>
+            </div>
+            <div className="flex-1">
+                <p>{adresse.veinavn} {adresse.bolignummer}</p>
+                <p className="text-sm capitalize">{(adresse.poststed).toLowerCase()}</p>
+            </div>
+            <div className="flex-1">
+                <p>{adresse.kommunenavn}</p>
+            </div>
+        </div>
+    )
+} 
+
+function fixPostName(name) {
+    return name.toLowerCase()
 }

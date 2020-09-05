@@ -1,19 +1,31 @@
-import fetch from 'isomorphic-unfetch'
+import useSWR from 'swr'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Searchbar from '../components/searchbar'
 import Adresse from '../components/adresse'
 
-export default function Search({ data, querystring }) {
+export default function Search() {
+    const { query } = useRouter()
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+    const { data, error } = useSWR(`/api/address?q=${query.address}`, fetcher)
+
+    if (!data) {
+        return (<div></div>)
+    }
+
+    else if (error) {
+        return <p>{error}</p>
+    }
 
     if (data.adresser) {
         return (
             <div>
-                <Searchbar query={querystring} />
+                <Searchbar query={query.address} />
                 <ul>
                     {data.adresser.map((adresse) => (
                         <li key={adresse.id}>
                             <Link href="/adresse/[id]" as={`/adresse/${adresse.id}`}>
-                                <div>
+                                <div className="my-2">
                                     <Adresse adresse={adresse} />
                                 </div>
                             </Link>
@@ -26,24 +38,9 @@ export default function Search({ data, querystring }) {
 
     return (
         <div>
-            <Searchbar query={querystring} />
+            <Searchbar query={query.address} />
             <h3>Ingen treff</h3>
         </div>
     )
 }
 
-export async function getServerSideProps(context) {
-
-    let props
-
-    await fetch(`http://localhost:3000/api/address?q=${context.query.address}`)
-        .then(r => r.json())
-        .then(data => {
-            props = {
-                data,
-                querystring: context.query.address
-            }
-        })
-
-    return { props }
-}

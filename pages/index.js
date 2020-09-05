@@ -2,14 +2,16 @@ import Searchbar from '../components/searchbar'
 
 export default function Home() {
   return (
-    <div className="bg-small">
+    <>
+      <h1 className="logo">Boligrating.no</h1>
 
-      <div className="px-10 pt-20">
-        <h3 className="font-semibold italic text-white text-3xl">Finn seriøse utleiere</h3>
-        <p className="text-gray-200 text-base">Søk i vår database med oversikt over tidligere leieboeres erfaringer</p>
+      <Searchbar />
+
+      <div className="m-4 flex flex-col justify-center">
+        <h3 className="font-semibold italic max-width">Finn seriøse utleiere</h3>
+        <p className="max-width">Søk i vår database med oversikt over tidligere leieboeres erfaringer</p>
       </div>
       
-      <Searchbar />
-    </div>
+    </>
   )
 }
