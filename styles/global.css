@@ -1,8 +1,66 @@
 body {
-  height: 100vh;
   
-  background-image: url('../public/background.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: whitesmoke;
+  min-width: 320px;
+  
 }
+
+.logo {
+  text-align: center;
+  font-size: 5rem;
+  font-family:'Brush Script MT';
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+.searchbar {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem;
+}
+
+.searchbackground {
+  background-color: white;
+}
+
+.max-width {
+  max-width: 30rem;
+  align-self: center;
+}
+
+.adresse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 35rem;
+  margin: auto;
+  padding: 2rem;
+
+  border-style: solid;
+  border-color: red;
+}
+
+
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+                
+}
+
+/* Collors
+
+gråblå  #CFDEE7
+blå     #92B4F4
+gul     #FFD23F
+rød     #EE4266
+sort    #050517
+
+*/
