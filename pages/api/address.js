@@ -7,7 +7,6 @@ export default async (req, res) => {
     if (req.query.q) {
 
         // variable to populate with sql response and sendt by api as json
-        let data = {}
 
         // TODO - sanitize input
 
@@ -15,33 +14,33 @@ export default async (req, res) => {
         const searchstring = '+' + req.query.q.split(' ').join('+')
 
         const [rows, fields] = await pool.query(sqlAdresser, [searchstring])
-        data.adresser = rows[0]
+        const adresser = rows[0]
 
-        if (data.adresser.length == 0) {
-            emptyResponse(res, data)
+        if (adresser.length == 0) {
+            emptyResponse(res, adresser)
         }
-            
-        res.statusCode = 200
-        res.json(data)
+        
+        else {
+            res.statusCode = 200
+            res.json({adresser})
+        }
     }
 
     else {
-        noQuerystring(res, data)
+        noQuerystring(res, adresser)
     }
 }
 
-function noQuerystring(res, data) {
+function noQuerystring(res, adresser) {
     res.statusCode = 200
     res.json({
-        message: "Empty searchstring",
-        data
+        message: "Empty searchstring"
     })
 }
 
-function emptyResponse(res, data) {
+function emptyResponse(res, adresser) {
     res.statusCode = 200
     res.json({
-        message: "Empty response",
-        data
+        message: "Empty response"
     })
 }
