@@ -1,8 +1,19 @@
+import useSWR from 'swr'
+import { useRouter} from 'next/router'
 import Adresse from '../../components/adresse'
 
-export default function Page({ data }) {
+export default function Page() {
+    const { query } = useRouter()
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+    const { data, error } = useSWR(`http://localhost:3000/api/review?adresse_id=${query.id}`, fetcher)
 
-    console.log(data)
+    if (!data) {
+        return (<div></div>)
+    }
+
+    else if (error) {
+        return <p>{error}</p>
+    }
 
     return (
         <div>
@@ -24,17 +35,4 @@ export default function Page({ data }) {
             </ul>
         </div>
     )
-}
-
-export async function getServerSideProps(context) {
-
-    let props
-
-    await fetch(`http://localhost:3000/api/review?adresse_id=${context.params.id}`)
-        .then(r => r.json())
-        .then(data => {
-            props = {data}
-        })
-        
-    return { props }
 }
