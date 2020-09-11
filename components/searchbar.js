@@ -1,6 +1,7 @@
+import style from '../styles/searchbar.module.css'
+
 export default function Searchbar(props) {
     return (
-        <div className="flex justify-center ">
             <form action="/search" method="get" className="shadow-md rounded searchbar searchbackground">
                 <label className="flex items-center p-1 w-full">
                     <input className="p-3 w-full outline-none searchbackground" placeholder="Skurkebakken 1 Andeby" name="address" defaultValue={props.query} autoFocus spellCheck="false" />
@@ -9,6 +10,5 @@ export default function Searchbar(props) {
                     </button>
                 </label>
             </form>
-        </div>
     )
 }
