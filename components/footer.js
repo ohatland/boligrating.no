@@ -1,9 +1,10 @@
 export default function Footer() {
     return (
         <footer>
-            <ul>
+            <ul className="flex justify-evenly align-baseline">
                 <li>Om oss</li>
-                <li className="float-right">Kontakt</li>
+                <p className="pt-4">Driftet av Leieboerforeningen i Norge</p>
+                <li>Kontakt</li>
             </ul>
         </footer>
     )
