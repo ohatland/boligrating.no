@@ -1,0 +1,18 @@
+.tittel {
+    padding-top: 6rem;
+    text-align: center;
+}
+
+.undertittel {
+    padding: 2rem 0 5rem 0;
+    text-align: center;
+}
+
+.bilde {
+    padding-top: 6rem;
+    width: 50%;
+    min-width: 150px;
+    max-width: 300px;
+    height: auto;
+    justify-self: center;
+}

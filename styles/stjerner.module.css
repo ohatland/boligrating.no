@@ -1,0 +1,15 @@
+.stjerner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    }
+    
+.stjerneja {
+    color: goldenrod;
+    height: 1rem;
+}
+
+.stjernenei {
+    color: white;
+    height: 1rem;
+}

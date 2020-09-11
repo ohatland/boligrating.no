@@ -2,7 +2,8 @@ import useSWR from 'swr'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Searchbar from '../components/searchbar'
-import Adresse from '../components/adresse'
+import Stjerner from '../components/stjerner'
+import style from '../styles/search.module.css'
 
 export default function Search() {
     const { query } = useRouter()
@@ -19,30 +20,23 @@ export default function Search() {
 
     if (data.adresser) {
         return (
-            <div>
+            <div className="page">
                 <Searchbar query={query.address} />
                 <ul className="searchtable">
                     {data.adresser.map((adresse) => (
                         <li key={adresse.id} className="searchresult">
-                            <Link href="/adresse/[id]" as={`/adresse/${adresse.id}`}>
-                                <div className="adresse">
-                                    <div className="vurderinger">
-                                        <div className="stjerner">
-                                            {arr.map((num) => {
-                                                if (adresse.snitt_karakter >= num - 0.5) { return (<i class="fas fa-star h-4"></i>) }
-                                                else if (adresse.snitt_karakter >= num - 1 && num - adresse.snitt_karakter < 1) { return (<i class="fas fa-star-half-alt h-4"></i>) }
-                                                else { return (<i class="far fa-star h-4"></i>) }
-                                            })}
-                                        </div>
+                            <Link href="/[id]" as={`/${adresse.id}`}>
+                                <div className={style.adressekort}>
+                                    <section className={style.vurdering}>
+                                        <Stjerner karakter={adresse.snitt_karakter} />
                                         <p className="text-xs">{adresse.antall_reviews} vurderinger</p>
-                                    </div>
-                                    <div className="adresseText">
-                                        <p>{adresse.veinavn} {adresse.bolignummer}</p>
-                                        <p className="text-xs capitalize">{(adresse.poststed).toLowerCase()}</p>
-                                    </div>
-                                    <div className="stedsnavn">
-                                        <p>{adresse.kommunenavn}</p>
-                                    </div>
+                                    </section>
+                                    <section className={style.adresse}>
+                                        <h3>{adresse.veinavn} {adresse.bolignummer}</h3>
+                                    </section>
+                                    <section className={style.stedsnavn}>
+                                        <h3>{adresse.kommunenavn}</h3>
+                                    </section>
                                 </div>
                             </Link>
                         </li>
@@ -58,9 +52,4 @@ export default function Search() {
             <h3>Ingen treff</h3>
         </div>
     )
-}
-
-
-function fixPostName(name) {
-    return name.toLowerCase()
 }

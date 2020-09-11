@@ -1,0 +1,78 @@
+.idadresse {
+    display: grid;
+    grid-template-areas: 
+    'adresse by'
+    'poststed .'
+    'score score';
+    width: auto;
+    background: white;
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+
+    border: solid rgb(170, 170, 170) 1px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.idvurdering {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    'tittel tittel'
+    'bodde-i bodde-i'
+    'skrevet-ar skrevet-ar'
+    'score score'
+    'tekst tekst'
+    '. .'
+    ;
+    width: auto;
+    background: white;
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+
+    border: solid rgb(170, 170, 170) 1px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.grid-tittel {
+    grid-area: tittel;
+}
+
+.grid-bodde-i {
+    grid-area: bodde-i;
+}
+
+.grid-skrevet-ar {
+    grid-area: skrevet-ar;
+}
+
+.grid-tekst {
+    grid-area: tekst;
+}
+
+.grid-adresse {
+    grid-area: adresse;
+}
+
+.grid-by {
+    grid-area: by;
+    justify-self: end;
+}
+
+.grid-poststed {
+    grid-area: poststed;
+}
+
+.grid-score {
+    grid-area: score;
+}
+
+.idkarakter {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+}
